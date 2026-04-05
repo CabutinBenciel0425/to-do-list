@@ -4,7 +4,8 @@ import EditItem from "./EditItem";
 import ListItem from "./ListItem";
 
 export default function List() {
-  const { state } = useTodos();
+  const { state, toggleTodo } = useTodos();
+
   return (
     <ul className="w-full flex flex-col gap-5 ">
       {state.todos.map((todo) => {
@@ -13,7 +14,7 @@ export default function List() {
             className="w-full flex flex-row justify-between border-b-cyan-950 border-b py-4"
             key={todo.id}
           >
-            <ListItem todo={todo} />
+            <ListItem todo={todo} onToggle={() => toggleTodo(todo.id)} />
             <div className="flex flex-row gap-5">
               <EditItem />
               <DeleteItem id={todo.id} />

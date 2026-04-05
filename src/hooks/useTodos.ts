@@ -2,5 +2,9 @@ import { useContext } from "react";
 import { TodoContext } from "../context/TodoContext";
 
 export function useTodos() {
-  return useContext(TodoContext);
+  const { state, dispatch } = useContext(TodoContext);
+  function toggleTodo(id: string) {
+    dispatch({ type: "TOGGLE_TODO", payload: id });
+  }
+  return { state, dispatch, toggleTodo };
 }
