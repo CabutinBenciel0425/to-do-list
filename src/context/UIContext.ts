@@ -6,11 +6,12 @@ export type UIContextType = {
   isDeleteModalOpen: boolean;
 
   todoToDelete: string | null;
+  todoToEdit: string | null;
 
   openAddItemModal: () => void;
   closeAddItemModal: () => void;
 
-  openEditModal: () => void;
+  openEditModal: (id: string) => void;
   closeEditModal: () => void;
 
   openDeleteModal: (id: string) => void;
@@ -22,6 +23,7 @@ export const UIContext = createContext<UIContextType>({
   isEditModalOpen: false,
   isDeleteModalOpen: false,
   todoToDelete: null,
+  todoToEdit: null,
 
   openAddItemModal: () => {},
   closeAddItemModal: () => {},

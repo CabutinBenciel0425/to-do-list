@@ -16,7 +16,7 @@ export default function List() {
           >
             <ListItem todo={todo} onToggle={() => toggleTodo(todo.id)} />
             <div className="flex flex-row gap-5">
-              <EditItem />
+              <EditItem id={todo.id} />
               <DeleteItem id={todo.id} />
             </div>
           </li>

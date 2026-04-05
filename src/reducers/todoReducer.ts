@@ -15,7 +15,11 @@ export function todoReducer(state: TodoState, action: TodoAction) {
         todos: [
           ...state.todos.map((todo) =>
             todo.id === action.payload
-              ? { ...todo, isDone: !todo.isDone }
+              ? {
+                  ...todo,
+                  isDone: !todo.isDone,
+                  date_updated: new Date().toISOString(),
+                }
               : todo,
           ),
         ],
@@ -23,15 +27,16 @@ export function todoReducer(state: TodoState, action: TodoAction) {
 
     case "UPDATE_TODO":
       return {
-        todos: [
-          ...state.todos.map((todo) =>
-            todo.id === action.payload.id
-              ? { ...todo, ...action.payload }
-              : todo,
-          ),
-        ],
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload.id
+            ? {
+                ...todo,
+                text: action.payload.text,
+                date_updated: new Date().toISOString(),
+              }
+            : todo,
+        ),
       };
-
     default:
       return state;
   }

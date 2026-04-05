@@ -2,6 +2,7 @@ import AddItem from "./components/AddItem";
 import AddItemModal from "./components/AddItemModal";
 import DeleteModal from "./components/DeleteModal";
 import List from "./components/List";
+import UpdateItemModal from "./components/UpdateItemModal";
 import { fakeTodos } from "./data/Todos";
 import { useUI } from "./hooks/useUI";
 import "./styles.css";
@@ -12,6 +13,9 @@ function App() {
     closeAddItemModal,
     isDeleteModalOpen,
     closeDeleteModal,
+    isEditModalOpen,
+    closeEditModal,
+    todoToEdit,
   } = useUI();
   console.log(fakeTodos);
   return (
@@ -37,6 +41,17 @@ function App() {
         >
           <div className="relative" onClick={(e) => e.stopPropagation()}>
             <DeleteModal />
+          </div>
+        </div>
+      )}
+
+      {isEditModalOpen && todoToEdit && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={closeEditModal}
+        >
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
+            <UpdateItemModal id={todoToEdit} />
           </div>
         </div>
       )}

@@ -6,6 +6,7 @@ export function UIProvider({ children }: { children: ReactNode }) {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [todoToDelete, setTodoToDelete] = useState<string | null>(null);
+  const [todoToEdit, setTodoToEdit] = useState<string | null>(null);
 
   function openDeleteModal(id: string) {
     setTodoToDelete(id);
@@ -17,6 +18,16 @@ export function UIProvider({ children }: { children: ReactNode }) {
     setIsDeleteModalOpen(false);
   }
 
+  function openEditModal(id: string) {
+    setTodoToEdit(id);
+    setEditModalOpen(true);
+  }
+
+  function closeEditModal() {
+    setTodoToEdit(null);
+    setEditModalOpen(false);
+  }
+
   return (
     <UIContext.Provider
       value={{
@@ -24,12 +35,13 @@ export function UIProvider({ children }: { children: ReactNode }) {
         isEditModalOpen,
         isDeleteModalOpen,
         todoToDelete,
+        todoToEdit,
 
         openAddItemModal: () => setAddModalOpen(true),
         closeAddItemModal: () => setAddModalOpen(false),
 
-        openEditModal: () => setEditModalOpen(true),
-        closeEditModal: () => setEditModalOpen(false),
+        openEditModal,
+        closeEditModal,
 
         openDeleteModal,
         closeDeleteModal,
