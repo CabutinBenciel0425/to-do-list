@@ -32,6 +32,7 @@ export function todoReducer(state: TodoState, action: TodoAction) {
             ? {
                 ...todo,
                 text: action.payload.text,
+                isDone: false,
                 date_updated: new Date().toISOString(),
               }
             : todo,

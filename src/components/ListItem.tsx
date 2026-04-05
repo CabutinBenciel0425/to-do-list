@@ -18,7 +18,7 @@ export default function ListItem({
       />
       <label
         htmlFor={todo.id}
-        className={`${todo.isDone ? "line-through text-gray-500" : ""}`}
+        className={`${todo.isDone ? "line-through text-gray-500" : ""} cursor-pointer`}
       >
         {todo.text}
       </label>
