@@ -1,11 +1,21 @@
+import { useTodos } from "../hooks/useTodos";
 import { useUI } from "../hooks/useUI";
 import CancelButton from "../UI/CancelButton";
 import ConfirmButton from "../UI/ConfirmButton";
 
 export default function DeleteModal() {
-  const { closeDeleteModal } = useUI();
+  const { todoToDelete, closeDeleteModal } = useUI();
+  const { dispatch } = useTodos();
+
   function handleDeleteItem() {
-    console.log("deleting");
+    if (!todoToDelete) return;
+
+    dispatch({
+      type: "DELETE_TODO",
+      payload: todoToDelete,
+    });
+
+    closeDeleteModal();
   }
   return (
     <div className="w-auto h-auto bg-white rounded-md p-8 flex flex-col gap-8">

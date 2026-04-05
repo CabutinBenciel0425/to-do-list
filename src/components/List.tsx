@@ -16,7 +16,7 @@ export default function List() {
             <ListItem todo={todo} />
             <div className="flex flex-row gap-5">
               <EditItem />
-              <DeleteItem />
+              <DeleteItem id={todo.id} />
             </div>
           </li>
         );
